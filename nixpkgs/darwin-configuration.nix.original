@@ -1,0 +1,77 @@
+{ config, pkgs, ... }:
+
+{
+  # List packages installed in system profile. To search by name, run:
+  # $ nix-env -qaP | grep wget
+  environment.systemPackages = with pkgs;
+    [ spacevim
+      bat
+      broot
+      curl
+      direnv
+      duf
+      exa
+      fd
+      fzf
+      git
+      gnupg
+      htop
+      iterm2
+      jdk11
+      jq
+      lsd
+      maven
+      nix-direnv
+      oh-my-zsh
+      procs
+      ripgrep
+      sbt
+    ];
+
+  environment.shellAliases.l="ls -lap";
+  environment.shellAliases.gs="git status";
+  environment.shellAliases.gst="git status";
+  environment.shellAliases.vim="spacevim";
+
+  environment.variables.JAVA_HOME = "${pkgs.jdk11}"; 
+
+  networking.computerName="Andrews Macbook Pro 2";
+
+  # Use a custom configuration.nix location.
+  # $ darwin-rebuild switch -I darwin-config=$HOME/.nixpkgs/darwin-configuration.nix
+  # environment.darwinConfig = "$HOME/.config/nixpkgs/darwin/configuration.nix";
+
+  # Auto upgrade nix package and the daemon service.
+  services.nix-daemon.enable=true;
+  # nix.package = pkgs.nix;
+
+  # Create /etc/bashrc that loads the nix-darwin environment.
+  programs.zsh.enable=true;  # default shell on catalina
+  # programs.fish.enable = true;
+  programs.zsh.enableSyntaxHighlighting = true;
+
+  system.defaults.NSGlobalDomain.AppleInterfaceStyle = "Dark";
+  system.defaults.NSGlobalDomain.AppleInterfaceStyleSwitchesAutomatically = false;
+  system.defaults.NSGlobalDomain.AppleShowAllExtensions = true;
+  system.defaults.NSGlobalDomain.AppleShowAllFiles = true;
+  system.defaults.NSGlobalDomain.AppleShowScrollBars = "Always";
+  system.defaults.dock.wvous-bl-corner = 13;
+  system.defaults.dock.wvous-tl-corner = 5;
+  system.defaults.finder.AppleShowAllFiles = true;
+  system.defaults.finder.FXPreferredViewStyle = "Nlsv";
+  system.defaults.magicmouse.MouseButtonMode = "TwoButton";
+
+  fonts.fontDir.enable = true;
+  fonts.fonts = with pkgs; [
+    inconsolata
+    fira-code
+    fira-mono
+  ];
+
+  time.timeZone  = "Europe/London";
+
+  # Used for backwards compatibility, please read the changelog before changing.
+  # $ darwin-rebuild changelog
+  system.stateVersion = 4;
+}
+
