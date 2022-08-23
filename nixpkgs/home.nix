@@ -1,8 +1,7 @@
 { config, pkgs, lib, ... }:
 let
-  #git_username    = "parduseidolon";
-  #git_useremail   = "38515818+PardusEidolon@users.noreply.github.com";
-  #git_signing_key = "913D70FC69A16089";
+  #git_username    = "";
+  #git_useremail   = "";
   pkgsUnstable    = import <nixpkgs-unstable> {};
 in {
   # Home Manager needs a bit of information about you and the paths it should manage.
@@ -84,19 +83,6 @@ in {
       ds     = "darwin-rebuild switch";
       gc     = "nix-collect-garbage -d";
       gs     = "${pkgs.git}/bin/git status";
-      # g      = "${pkgs.git}/bin/git log --pretty=color -32";
-      # gb     = "${pkgs.git}/bin/git branch";
-      # gc     = "${pkgs.git}/bin/git checkout";
-      # gcb    = "${pkgs.git}/bin/git checkout -B";
-      # gd     = "${pkgs.git}/bin/git diff --minimal --patch";
-      # gf     = "${pkgs.git}/bin/git fetch";
-      # ga     = "${pkgs.git}/bin/git log --pretty=color --all";
-      # gg     = "${pkgs.git}/bin/git log --pretty=color --graph";
-      # gl     = "${pkgs.git}/bin/git log --pretty=nocolor";
-      # grh    = "${pkgs.git}/bin/git reset --hard";
-
-      # good   = "${pkgs.git}/bin/git bisect good";
-      # bad    = "${pkgs.git}/bin/git bisect bad";
     };
 
     profileExtra = ''
@@ -150,13 +136,10 @@ in {
 
   # programs.direnv.enableZshIntegration = true;
 
-  # Git configuration see https://rycee.gitlab.io/home-manager/options.html#opt-programs.git.enable
   #programs.git = {
   #  enable = true;
   #  userName = git_username;
   #  userEmail = git_useremail;
-  #  signing.key = git_signing_key;
-  #  signing.signByDefault = true;
   #  signing.gpgPath = "/usr/local/MacGPG2/bin/gpg2";
   #  ignores = [ ".envrc" ".DS_Store" ];
   #  attributes = [];
@@ -170,38 +153,7 @@ in {
   #    cm          = "commit -m";
   #    lg          = "log --graph";
   #    ls           = "log --oneline";
-      # ca         = "commit --amend";
-      # changes    = "diff --name-status -r";
-      # clone      = "clone --recursive";
-  #    cb         = "checkout -b";
-  #    cob         = "checkout --orphan -b";
-  #    pf          = "push -f";
-      # cp         = "cherry-pick";
-      # dc         = "diff --cached";
-      # dh         = "diff HEAD";
-      # ds         = "diff --staged";
-      # from       = "!${pkgs.git}/bin/git bisect start && ${pkgs.git}/bin/git bisect bad HEAD && ${pkgs.git}/bin/git bisect good";
-      # ls-ignored = "ls-files --exclude-standard --ignored --others";
-      # rc         = "rebase --continue";
-      # rh         = "reset --hard";
-      # ri         = "rebase --interactive";
-      # rs         = "rebase --skip";
-      # ru         = "remote update --prune";
-      # snap       = "!${pkgs.git}/bin/git stash"
-      #            + " && ${pkgs.git}/bin/git stash apply";
-      # snaplog    = "!${pkgs.git}/bin/git log refs/snapshots/refs/heads/"
-      #            + "\$(${pkgs.git}/bin/git rev-parse HEAD)";
-      # spull      = "!${pkgs.git}/bin/git stash"
-      #            + " && ${pkgs.git}/bin/git pull"
-      #            + " && ${pkgs.git}/bin/git stash pop";
       # st         = "status";
-      # su         = "submodule update --init --recursive";
-      # undo       = "reset --soft HEAD^";
-      # w          = "status -sb";
-      # wdiff      = "diff --color-words";
-      # l          = "log --graph --pretty=format:'%Cred%h%Creset"
-      #            + " —%Cblue%d%Creset %s %Cgreen(%cr)%Creset'"
-                #  + " --abbrev-commit --date=relative --show-notes=*";
    # };
 
     # lfs.enable = true;
