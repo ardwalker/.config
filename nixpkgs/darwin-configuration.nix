@@ -12,14 +12,14 @@ in {
   environment.darwinConfig = "$HOME/.config/nixpkgs/darwin-configuration.nix";
 
   # List of Binary Caches for Cardano
-  nix.trustedBinaryCaches = [ "https://hydra.iohk.io" 
+  nix.trustedBinaryCaches = [ "https://hydra.iohk.io"
                               "https://cache.nixos.org/"
                               "https://cache.iog.io"
                             ];
-  
-  nix.binaryCachePublicKeys = [ 
+
+  nix.binaryCachePublicKeys = [
                                 "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
-                                "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" 
+                                "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
                               ];
 
   # nix.binaryCaches = [
@@ -35,14 +35,16 @@ in {
   '';
 
   programs.nix-index.enable = true;
+
   programs.zsh.enable = true;  # default shell on catalina
 
+
   # Add ability to used TouchID for sudo authentication
-  # security.pam.enableSudoTouchIdAuth = true;  
+  # security.pam.enableSudoTouchIdAuth = true;
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [ 
+  environment.systemPackages = with pkgs; [
       #cachix
       #coreutils
       #gnupg
@@ -55,7 +57,7 @@ in {
 
   # Homebrew Setup and installation
   # homebrew.enable = false;
-  # homebrew.brews = [ 
+  # homebrew.brews = [
   #                  "ghcup"
   #                  "haskell-stack"
   #                  "syntaqx/tap/serve"
@@ -86,7 +88,7 @@ in {
 
   # Makesure there are no duplicate entries in the PATH and put usr paths first.
   environment.extraInit = ''
-    typeset -U PATH path  
+    typeset -U PATH path
   '';
 
   fonts.fontDir.enable = true;

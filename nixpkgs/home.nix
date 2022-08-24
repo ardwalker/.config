@@ -64,7 +64,6 @@ in {
       theme = "powerlevel10k/powerlevel10k";
     };
 
-
     sessionVariables = {
       cfg       = "$HOME/.config/nix/darwin-configuration.nix";
       darwin    = "$HOME/.nix-defexpr/darwin";
