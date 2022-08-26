@@ -8,35 +8,39 @@ in {
   imports = [ <home-manager/nix-darwin> ];
 
   # Use a custom darwin-configuration location.
-  # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin-configuration.nix
+  # $ darwin-rebuild build -I darwin-config=$HOME/.config/nixpkgs/darwin-configuration.nix
+  # $ darwin-rebuild switch
+
   environment.darwinConfig = "$HOME/.config/nixpkgs/darwin-configuration.nix";
 
   # List of Binary Caches for Cardano
-  nix.trustedBinaryCaches = [ "https://hydra.iohk.io"
-                              "https://cache.nixos.org/"
-                              "https://cache.iog.io"
-                            ];
+  nix.settings.trusted-substituters = [
+                                        "https://hydra.iohk.io"
+                                        "https://cache.nixos.org/"
+                                        "https://cache.iog.io"
+                                      ];
 
-  nix.binaryCachePublicKeys = [
-                                "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
-                                "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-                              ];
+  nix.settings.trusted-public-keys = [
+                                       "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
+                                       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+                                     ];
 
   # nix.binaryCaches = [
   #                       "https://cache.iog.io"
   #                    ];
 
   # Enable experimental nix command and flakes
-  # nix.package = pkgs.nixUnstable;
-  nix.extraOptions = ''
-    auto-optimise-store = true
-    experimental-features = nix-command flakes
-    system = x86_64-darwin
-  '';
+  #nix.package = pkgs.nixUnstable;
+  #nix.extraOptions = ''
+  #  #auto-optimise-store = true
+  #  #experimental-features = nix-command flakes
+  #  #system = x86_64-darwin
+  #'';
 
   programs.nix-index.enable = true;
 
-  programs.zsh.enable = true;  # default shell on catalina
+
+  programs.zsh.enable = true;
 
 
   # Add ability to used TouchID for sudo authentication
