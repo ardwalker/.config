@@ -37,6 +37,7 @@ in {
     jq
     lsd
     m-cli #useful macOS CLI commands
+    mongodb
     nix-direnv
     niv
     ripgrep
