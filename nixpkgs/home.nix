@@ -64,6 +64,8 @@ in {
       ds     = "darwin-rebuild switch";
       gc     = "nix-collect-garbage -d";
       gs     = "${pkgs.git}/bin/git status";
+      sbt11  = "${pkgs.sbt} --java-home ${pkgs.jdk11}";
+      java11 = "export JAVA_HOME=`/usr/libexec/java_home -v11`";
     };
     sessionVariables = {
       cfg       = "$HOME/.config/nix/darwin-configuration.nix";
@@ -76,6 +78,8 @@ in {
 
     initExtra = ''
       autoload -U promptinit && promptinit
+
+      ulimit -n 8196
 
       # Integrate the prompt with git
       autoload -Uz vcs_info
@@ -97,6 +101,7 @@ in {
 
       source ~/.p10k.zsh
 
+      export JAVA_HOME=`/usr/libexec/java_home -v11`
     '';
   };
 
